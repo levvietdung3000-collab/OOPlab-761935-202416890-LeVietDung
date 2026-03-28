@@ -1,0 +1,34 @@
+import javax.swing.JOptionPane;
+
+public class DoubleOperationsDialog {
+    public static void main(String[] args) {
+
+        String strNum1 = JOptionPane.showInputDialog(null,
+                "Nhập số thứ nhất:", "Nhập liệu", JOptionPane.INFORMATION_MESSAGE);
+        double num1 = Double.parseDouble(strNum1);
+
+        String strNum2 = JOptionPane.showInputDialog(null,
+                "Nhập số thứ hai:", "Nhập liệu", JOptionPane.INFORMATION_MESSAGE);
+        double num2 = Double.parseDouble(strNum2);
+
+        double sum = num1 + num2;
+        double diff = num1 - num2;
+        double product = num1 * num2;
+
+        String result = "Tổng: " + sum + "\n" +
+                "Hiệu: " + diff + "\n" +
+                "Tích: " + product + "\n";
+
+        if (num2 != 0) {
+            double quotient = num1 / num2;
+            result += "Thương: " + quotient;
+        } else {
+            result += "Thương: Không thể chia cho 0";
+        }
+
+        JOptionPane.showMessageDialog(null, result,
+                "Kết quả tính toán", JOptionPane.INFORMATION_MESSAGE);
+
+        System.exit(0);
+    }
+}
