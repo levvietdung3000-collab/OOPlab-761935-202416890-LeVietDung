@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class DaysInMonth {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int year, month = -1;
+
+        while (true) {
+            System.out.print("Enter month (name, abbr., or number): ");
+            String mInput = sc.next().toLowerCase();
+            System.out.print("Enter year (non-negative number): ");
+            if (!sc.hasNextInt()) { sc.next(); continue; }
+            year = sc.nextInt();
+            if (year < 0) continue;
+
+            if (mInput.equals("1") || mInput.equals("january") || mInput.equals("jan.") || mInput.equals("jan")) month = 1;
+            else if (mInput.equals("2") || mInput.equals("february") || mInput.equals("feb.") || mInput.equals("feb")) month = 2;
+
+            if (month != -1) break;
+            System.out.println("Invalid input. Try again.");
+        }
+
+        int days = 0;
+        switch (month) {
+            case 1, 3, 5, 7, 8, 10, 12 -> days = 31;
+            case 4, 6, 9, 11 -> days = 30;
+            case 2 -> {
+                if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) days = 29;
+                else days = 28;
+            }
+        }
+        System.out.println("Days: " + days);
+    }
+}
