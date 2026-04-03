@@ -1,0 +1,36 @@
+6.1
+Câu 1: Điều gì xảy ra nếu chọn "Cancel"?
+	Chương trình sẽ hiển thị "You've chosen: No". Vì giá trị trả về khi chọn Cancel không bằng với giá trị của JOptionPane.YES_OPTION, nên chưng trình sẽ trả về kết quả là "No".
+
+Câu 2: Làm thế nào để tùy chỉnh các lựa chọn, ví dụ chỉ có hai lựa chọn "Yes" và "No" hoặc "I do" và "I don't"?
+
+Ví dụ 1: Trường hợp "Yes" và "No"
+
+int option = JOptionPane.showOptionDialog(null,
+    "Do you agree?",
+    "Custom Options",
+    JOptionPane.YES_NO_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,
+    new Object[]{"Yes", "No"},
+    "Yes");
+
+JOptionPane.showMessageDialog(null, "You've chosen: " + (option == 0 ? "Yes" : "No"));
+
+// new Object[]{"Yes", "No"} là mảng định nghĩa hai lựa chọn tùy chỉnh.
+
+
+Ví dụ 2: Trường hợp "I do" và "I don't"
+
+int option = JOptionPane.showOptionDialog(null,
+    "Do you agree?",
+    "Custom Options",
+    JOptionPane.YES_NO_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,
+    new Object[]{"I do", "I don't"},
+    "I do");
+
+JOptionPane.showMessageDialog(null, "You've chosen: " + (option == 0 ? "I do" : "I don't"));
+
+// Giá trị trả về là chỉ số của mảng (0 cho lựa chọn đầu tiên, 1 cho lựa chọn thứ hai).
