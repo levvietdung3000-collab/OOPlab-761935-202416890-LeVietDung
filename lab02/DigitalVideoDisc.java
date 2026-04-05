@@ -1,4 +1,4 @@
-public class DigitalVideoDisc {
+ public class DigitalVideoDisc {
 
     private String title;
     private String category;
