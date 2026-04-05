@@ -1,0 +1,28 @@
+// 14.1 - Nạp chồng với tham số là Mảng (Array)
+public void addDigitalVideoDisc(DigitalVideoDisc [] dvdList) {
+    for (DigitalVideoDisc disc : dvdList) {
+        if (qtyOrdered < MAX_NUMBERS_ORDERED) {
+            itemsOrdered[qtyOrdered] = disc;
+            qtyOrdered++;
+            System.out.println("The disc \"" + disc.getTitle() + "\" has been added.");
+        } else {
+            System.out.println("The cart is almost full. Cannot add \"" + disc.getTitle() + "\"");
+            break;
+        }
+    }
+}
+
+// 14.1 - Nạp chồng với tham số tùy ý (Varargs)
+/* 
+public void addDigitalVideoDisc(DigitalVideoDisc... dvds) {
+    for (DigitalVideoDisc disc : dvds) {
+        addDigitalVideoDisc(disc); // Gọi lại hàm thêm 1 đĩa để tránh lặp code
+    }
+}
+*/
+
+// 14.2 - Nạp chồng với đúng 2 tham số
+public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+    addDigitalVideoDisc(dvd1);
+    addDigitalVideoDisc(dvd2);
+}
