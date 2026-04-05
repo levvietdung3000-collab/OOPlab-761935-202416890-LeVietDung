@@ -1,0 +1,7 @@
+jungle dvd title: Jungle (Không bị đổi sau khi swap)
+cinderella dvd title: Cinderella (Không bị đổi sau khi swap)
+jungle dvd title: Cinderella (Đã bị đổi sau khi gọi changeTitle)
+
+-Tại sao swap không được? Vì Java tạo ra 2 bản sao của cái "địa chỉ" ô nhớ. Bạn tráo đổi 2 bản sao đó thì cái biến gốc ở hàm main vẫn trỏ về chỗ cũ.
+-Tại sao changeTitle lại được? Vì bạn dùng bản sao địa chỉ đó để đi vào tận bên trong đối tượng và sửa dữ liệu thực tế của nó.
+- java luôn là truyền tham trị(pass by value)
