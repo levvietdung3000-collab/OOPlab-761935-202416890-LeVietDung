@@ -26,7 +26,7 @@ public class DigitalVideoDisc {
         this.cost = cost;
     }
 
-
+// bài 9
     public String getTitle() {
         return title;
     }
