@@ -1,3 +1,14 @@
+bài 10:
+câu trả lời là không được
+-Phương thức khởi tạo bằng title sẽ có dạng: DigitalVideoDisc(String title)
+-Phương thức khởi tạo bằng category sẽ có dạng: DigitalVideoDisc(String category)
+->Cả hai đều chỉ có duy nhất 1 tham số kiểu String. Java sẽ không thể phân biệt được bạn đang muốn gọi cái nào dựa trên tên biến (title hay category). Do đó, Java sẽ báo lỗi trùng lặp (Duplicate method).
+bài 9:
+KHI NÀO NÊN DÙNG ACCESSOR METHODS:
+-Hạn chế tối đa trong các lớp nghiệp vụ (Domain Models): Thay vì lấy dữ liệu ra để xử lý bên ngoài, hãy đưa logic xử lý vào trong chính lớp đó 
+-Sử dụng cho các đối tượng truyền dữ liệu (DTOs): Các lớp chỉ có nhiệm vụ chứa dữ liệu mà không có hành vi.
+-Sử dụng khi bắt buộc bởi Framework: Nhiều framework (như Spring, Hibernate, JavaServer Faces) yêu cầu quy chuẩn JavaBeans (phải có getter/setter).
+-Khi cần kiểm soát truy cập: Dùng Getter khi chỉ muốn cho phép xem mà không cho sửa (Read-only), hoặc dùng Setter để kiểm tra tính hợp lệ của dữ liệu đầu vào.
 Bài 14:
 Tôi thích sử dụng Varargs (DigitalVideoDisc... dvds) hơn.
 Lý do:
