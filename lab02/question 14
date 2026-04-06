@@ -1,8 +1,0 @@
-Tôi thích sử dụng Varargs (DigitalVideoDisc... dvds) hơn.
-Lý do:
--Sự linh hoạt: Varargs cho phép bạn truyền vào 1 đĩa, 2 đĩa, 10 đĩa, hoặc thậm chí là một mảng đĩa mà không cần phải khởi tạo mảng thủ công bằng từ khóa new.
--Code gọn hơn: Khi gọi hàm trong Aims.java, thay vì phải viết:
-anOrder.addDigitalVideoDisc(new DigitalVideoDisc[] {dvd1, dvd2});
--Bạn chỉ cần viết:
-anOrder.addDigitalVideoDisc(dvd1, dvd2, dvd3);
-Tương thích: Varargs thực chất được Java xử lý như một mảng bên trong phương thức, nên nó giữ được mọi ưu điểm của mảng nhưng cú pháp sử dụng bên ngoài lại thuận tiện hơn nhiều.
