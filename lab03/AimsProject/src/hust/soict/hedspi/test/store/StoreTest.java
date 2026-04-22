@@ -1,6 +1,7 @@
-package hust.soict.hedspi.aims.store;
+package hust.soict.hedspi.test.store;
 
-import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.DigitalVideoDisc;
+import hust.soict.hedspi.aims.store.Store;
 
 public class StoreTest {
     public static void main(String[] args) {
@@ -13,12 +14,12 @@ public class StoreTest {
         DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin", "Animation", 18.99f);
 
         // 3. Test phương thức thêm (addDVD)
-        myStore.addDVD(dvd1);
-        myStore.addDVD(dvd2);
-        myStore.addDVD(dvd3);
+        myStore.addMedia(dvd1);
+        myStore.addMedia(dvd2);
+        myStore.addMedia(dvd3);
 
         // 4. Test phương thức xóa (removeDVD)
-        myStore.removeDVD(dvd2); // Xóa đĩa Star Wars
-        myStore.removeDVD(dvd2); // Thử xóa lại đĩa đã xóa (để test thông báo lỗi)
+        myStore.removeMedia(dvd2); // Xóa đĩa Star Wars
+        myStore.removeMedia(dvd2); // Thử xóa lại đĩa đã xóa (để test thông báo lỗi)
     }
 }

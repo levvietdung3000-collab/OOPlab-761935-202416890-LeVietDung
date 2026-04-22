@@ -1,100 +1,95 @@
 package hust.soict.hedspi.aims.cart;
-import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
 
+import java.util.ArrayList;
+import hust.soict.hedspi.aims.media.Media;
+import java.util.Collections;
 public class Cart {
-    private int qtyOrdered = 0;
-    public static final int MAX_NUMBERS_ORDERED = 20;
-    private DigitalVideoDisc itemOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+    // 1. Khai báo thuộc tính
+    private ArrayList<Media> itemsOrdered;
 
-    // --- CÁC HÀM ADD/REMOVE CỦA BẠN (GIỮ NGUYÊN) ---
-    public void addDigitalVideoDisc(DigitalVideoDisc item) {
-        if (qtyOrdered == MAX_NUMBERS_ORDERED) {
-            System.out.println("The cart is almost full");
+    // 2. CẬP NHẬT CONSTRUCTOR (Yêu cầu bài 14)
+    public Cart() {
+        // Khởi tạo thành phần con ngay khi đối tượng Cart được tạo
+        this.itemsOrdered = new ArrayList<Media>();
+    }
+
+    // --- CÁC PHƯƠNG THỨC QUẢN LÝ ---
+
+    public void addMedia(Media media) {
+        if (itemsOrdered.contains(media)) {
+            System.out.println("The media " + media.getTitle() + " is already in the cart.");
         } else {
-            itemOrdered[qtyOrdered] = item;
-            qtyOrdered++;
-            System.out.println("Added: " + item.getTitle());
+            itemsOrdered.add(media);
+            System.out.println("Added: " + media.getTitle());
         }
     }
 
-    public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
-        for (DigitalVideoDisc dvd : dvdList) {
-            addDigitalVideoDisc(dvd);
+    public void removeMedia(Media media) {
+        if (itemsOrdered.remove(media)) {
+            System.out.println("Removed: " + media.getTitle());
+        } else {
+            System.out.println("Media " + media.getTitle() + " not found in the cart.");
         }
     }
 
-    public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
-        addDigitalVideoDisc(dvd1);
-        addDigitalVideoDisc(dvd2);
-    }
-
-    public void removeDigitalVideoDisc(DigitalVideoDisc item) {
-        boolean found = false;
-        for (int i = 0; i < qtyOrdered; i++) {
-            if (itemOrdered[i].equals(item)) {
-                found = true;
-                for (int j = i; j < qtyOrdered - 1; j++) {
-                    itemOrdered[j] = itemOrdered[j + 1];
-                }
-                itemOrdered[qtyOrdered - 1] = null;
-                qtyOrdered--;
-                System.out.println("Removed: " + item.getTitle());
-                break;
-            }
-        }
-        if (!found) System.out.println("DVD not found");
-    }
-
-    // --- CÁC HÀM UPDATE MỚI THEO YÊU CẦU LAB 03 ---
-
-    // 1. Hàm tính tổng tiền (Đã sửa lỗi: đưa biến total vào trong hàm)
     public float totalCost() {
         float total = 0;
-        for (int i = 0; i < qtyOrdered; i++) {
-            total += itemOrdered[i].getCost();
+        for (Media media : itemsOrdered) {
+            total += media.getCost();
         }
         return total;
     }
 
-    // 2. Hàm in giỏ hàng (Yêu cầu 4.1)
+    // --- PHƯƠNG THỨC HIỂN THỊ VÀ TÌM KIẾM ---
+
     public void print() {
-        System.out.println("***********************CART***********************");
+        System.out.println("*********************** CART ***********************");
         System.out.println("Ordered Items:");
-        for (int i = 0; i < qtyOrdered; i++) {
-            // Sử dụng hàm toString() đã viết bên DigitalVideoDisc
-            System.out.println((i + 1) + ". " + itemOrdered[i].toString());
+        for (int i = 0; i < itemsOrdered.size(); i++) {
+            System.out.println((i + 1) + ". " + itemsOrdered.get(i).toString());
         }
         System.out.println("Total cost: " + totalCost() + " $");
         System.out.println("***************************************************");
     }
 
-    // 3. Tìm kiếm theo ID (Yêu cầu 4.2)
     public void searchById(int id) {
         boolean found = false;
-        for (int i = 0; i < qtyOrdered; i++) {
-            if (itemOrdered[i].getId() == id) {
-                System.out.println("Found match: " + itemOrdered[i].toString());
+        for (Media media : itemsOrdered) {
+            if (media.getId() == id) {
+                System.out.println("Found match: " + media.toString());
                 found = true;
                 break;
             }
         }
-        if (!found) {
-            System.out.println("No DVD found with ID: " + id);
-        }
+        if (!found) System.out.println("No media found with ID: " + id);
     }
 
-    // 4. Tìm kiếm theo Title (Yêu cầu 4.3)
     public void searchByTitle(String title) {
         boolean found = false;
-        for (int i = 0; i < qtyOrdered; i++) {
-            // Sử dụng hàm isMatch() đã viết bên DigitalVideoDisc
-            if (itemOrdered[i].isMatch(title)) {
-                System.out.println("Found match: " + itemOrdered[i].toString());
+        for (Media media : itemsOrdered) {
+            if (media.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                System.out.println("Found match: " + media.toString());
                 found = true;
             }
         }
-        if (!found) {
-            System.out.println("No DVD found with title: " + title);
-        }
+        if (!found) System.out.println("No media found with title: " + title);
+    }
+
+    // Getter phục vụ cho các chức năng sắp xếp hoặc lọc sau này
+    public ArrayList<Media> getItemsOrdered() {
+        return itemsOrdered;
+    }
+    public void sortByTitle() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+        System.out.println("Cart sorted by Title.");
+    }
+
+    public void sortByCost() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+        System.out.println("Cart sorted by Cost.");
+    }
+    public void emptyCart() {
+        itemsOrdered.clear();
+        System.out.println("The cart is now empty.");
     }
 }
