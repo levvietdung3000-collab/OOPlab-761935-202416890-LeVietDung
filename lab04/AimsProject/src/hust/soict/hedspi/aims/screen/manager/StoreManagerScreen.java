@@ -1,6 +1,5 @@
 package hust.soict.hedspi.aims.screen.manager;
 
-import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.store.Store;
 
 import javax.swing.*;

@@ -1,7 +1,6 @@
 package hust.soict.hedspi.aims.store;
 
 import java.util.ArrayList;
-import hust.soict.hedspi.aims.media.Media;
 
 public class Store {
     // 1. Khai báo thuộc tính (Nên để private để đảm bảo tính đóng gói)

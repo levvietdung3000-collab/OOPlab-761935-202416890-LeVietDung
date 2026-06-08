@@ -1,7 +1,6 @@
 package hust.soict.hedspi.aims.cart;
 
 import java.util.ArrayList;
-import hust.soict.hedspi.aims.media.Media;
 import java.util.Collections;
 public class Cart {
     // 1. Khai báo thuộc tính

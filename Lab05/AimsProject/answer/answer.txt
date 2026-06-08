@@ -1,0 +1,18 @@
+Question from Section 11 (Update the Aims class):
+"What happens when you don't update for them to catch?"
+Answer:
+Because PlayerException is a checked exception (it extends java.lang.Exception directly instead of java.lang.RuntimeException), the Java compiler enforces that it must either:
+1. Be caught using a try-catch block where the play() method is called.
+2. Be declared in the method signature using the throws keyword so it can be propagated up to the caller.
+If we don't write a try-catch block and do not declare "throws PlayerException" in the calling methods (such as the menus in Aims.java), the Java compiler will report a compilation error: "Unhandled exception type PlayerException".
+------------------------------------------------------------
+Implementation Explanations:
+1. Painter Application (Section 3.4.1 - Draw when mouse down):
+   In the Painter.fxml file, we bind both the `onMousePressed` and `onMouseDragged` event properties of the drawingAreaPane to the same controller method: `drawingAreaMouseDragged`. This ensures that when a user clicks down on the mouse without moving it, a single dot (Circle) is drawn immediately.
+2. Painter Application (Section 3.4.2 - Eraser functionality):
+   We added a TitledPane containing "Pen" and "Eraser" RadioButtons belonging to the same ToggleGroup. In the PainterController, when a mouse drag event is detected:
+   - If "Pen" is selected, the color is set to Color.BLACK and the radius is 4.0.
+   - If "Eraser" is selected, the color is set to Color.WHITE (matching the canvas background color) and the radius is 8.0 to make erasing easier.
+3. Exception Handling (Section 12 - Media equals and compareTo):
+   - equals(Object obj): Modified to safely return false if obj is null or not an instance of Media (using `instanceof`), preventing ClassCastException. It compares titles and costs, avoiding NullPointerException if the title is null.
+   - compareTo(Media other): Added support for natural ordering by implementing Comparable<Media>. It checks if other is null (throwing NullPointerException) and compares media items alphabetically by title, then by cost.
